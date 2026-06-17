@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel &amp; Wawasan Hukum | AJD Law Firm</title>
+<meta name="description" content="Artikel, berita, dan wawasan hukum terbaru dari tim AJD Law Firm (Andi Jamaro Dulung & Associates).">
+<link rel="icon" href="assets/ajd-logo.jpg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="crumb">Artikel</div>
+            <h1>Wawasan &amp; Berita Hukum</h1>
+            <p>Kumpulan artikel, analisis, dan informasi hukum terkini dari tim AJD Law Firm untuk menambah wawasan Anda.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <!-- ============================================================
+                 CARA MENAMBAH ARTIKEL BARU (mirip blog WordPress)
+                 ------------------------------------------------------------
+                 LANGKAH 1 — Buat halaman artikel:
+                   Salin file "articles/template-artikel.html", ganti namanya
+                   (mis. "articles/artikel-4.html"), lalu isi judul, tanggal,
+                   gambar, dan isi tulisan di dalamnya.
+
+                 LANGKAH 2 — Tambahkan kartu di daftar ini:
+                   Salin SATU blok <article class="article-card">...</article>
+                   di bawah, tempel di paling atas (artikel terbaru di atas),
+                   lalu ubah:
+                     - src gambar  -> "assets/articles/namafile.jpg"
+                     - article-cat -> kategori (mis. "Pidana", "Perdata")
+                     - tanggal     -> tanggal terbit
+                     - <h3>        -> judul artikel
+                     - <p>         -> ringkasan singkat
+                     - href "Baca" -> "articles/artikel-4.html"
+
+                 LANGKAH 3 — Simpan, commit, push ke GitHub. Langsung online.
+
+                 TIPS GAMBAR: rasio 16:10, simpan di /assets/articles/.
+                 ============================================================ -->
+            <div class="article-grid">
+
+                <!-- ===== ARTIKEL CARD (terbaru di atas) ===== -->
+                <article class="article-card">
+                    <img class="article-thumb" src="assets/articles/artikel-1.jpg" alt="Ilustrasi artikel">
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <span class="article-cat">Litigasi</span>
+                            <span>10 Juni 2026</span>
+                        </div>
+                        <h3>Langkah Hukum Menghadapi Sengketa Perdata</h3>
+                        <p>Memahami tahapan penyelesaian sengketa perdata, dari upaya mediasi hingga proses persidangan, agar hak Anda terlindungi secara optimal.</p>
+                        <a class="article-link" href="articles/artikel-1.html">Baca selengkapnya &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img class="article-thumb" src="assets/articles/artikel-2.jpg" alt="Ilustrasi artikel">
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <span class="article-cat">Korporasi</span>
+                            <span>2 Juni 2026</span>
+                        </div>
+                        <h3>Pentingnya Kontrak yang Sah dalam Berbisnis</h3>
+                        <p>Kontrak yang disusun dengan benar adalah fondasi hubungan bisnis yang aman. Simak unsur-unsur penting yang wajib ada dalam sebuah perjanjian.</p>
+                        <a class="article-link" href="articles/artikel-2.html">Baca selengkapnya &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img class="article-thumb" src="assets/articles/artikel-3.jpg" alt="Ilustrasi artikel">
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <span class="article-cat">Konsultasi</span>
+                            <span>25 Mei 2026</span>
+                        </div>
+                        <h3>Kapan Anda Membutuhkan Jasa Advokat?</h3>
+                        <p>Tidak semua masalah hukum harus berujung di pengadilan. Kenali situasi di mana pendampingan advokat menjadi krusial bagi Anda.</p>
+                        <a class="article-link" href="articles/artikel-3.html">Baca selengkapnya &rarr;</a>
+                    </div>
+                </article>
+                <!-- ===== /ARTIKEL CARD ===== -->
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="site-footer"></footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
