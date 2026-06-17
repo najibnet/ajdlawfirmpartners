@@ -113,7 +113,7 @@
        5. Tempel URL tersebut menggantikan teks "PASTE_URL_APPSCRIPT_ANDA"
           di baris APPSCRIPT_URL di bawah ini.
        ================================================================ */
-    var APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9SU28ve7uib2Z5zMu4wPrc9z8swpwXN4Re2XMargJMa2yI5diVJ267A0y9U-FYQWIqA/exec";
+    var APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKrKo20aVZKzPlDeVWCQrxDdzbcGyieCZKJv6KYDwxkK06kmFtUodY0bj8_K6amLp1gg/exec";
 
     (function () {
         var form = document.getElementById("contactForm");
@@ -125,7 +125,7 @@
             status.className = "form-status";
             status.style.display = "none";
 
-            if (APPSCRIPT_URL === "https://script.google.com/macros/s/AKfycbz9SU28ve7uib2Z5zMu4wPrc9z8swpwXN4Re2XMargJMa2yI5diVJ267A0y9U-FYQWIqA/exec") {
+            if (APPSCRIPT_URL === "PASTE_URL_APPSCRIPT_ANDA") {
                 status.className = "form-status error";
                 status.textContent = "Formulir belum dikonfigurasi. Tempelkan URL Apps Script terlebih dahulu.";
                 return;
