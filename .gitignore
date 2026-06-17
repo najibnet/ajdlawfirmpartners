@@ -1,0 +1,9 @@
+# Mengabaikan folder dependensi node
+node_modules/
+
+# Mengabaikan file log jika ada error
+*.log
+
+# Mengabaikan file sampah sistem operasi
+.DS_Store
+Thumbs.db
