@@ -43,7 +43,7 @@
             '<header class="navbar"><div class="container nav-inner">' +
             '<a href="' + relPrefix() + 'index.html" class="logo-wrap">' +
             '<img class="logo-img" src="' + relPrefix() + 'assets/ajd-logo.jpg" alt="Logo AJD Law Firm">' +
-            '<span class="logo-text"><strong>AJD Law Firm</strong><small>Andi Jamaro Dulung &amp; Associates</small></span>' +
+            '<span class="logo-text"><strong>AJD Law Firm</strong><small>Andi Jamaro Dulung &amp; Partners</small></span>' +
             "</a>" +
             '<div class="nav-right">' +
             '<nav><ul class="nav-menu" id="navMenu">' + menu + "</ul></nav>" +
@@ -58,7 +58,7 @@
             '<div class="container"><div class="footer-grid">' +
             "<div>" +
             '<div class="footer-brand"><img src="' + relPrefix() + 'assets/ajd-logo.jpg" alt="Logo AJD Law Firm"><span>AJD Law Firm</span></div>' +
-            '<p class="footer-about">Law Office Andi Jamaro Dulung &amp; Associates. Kantor hukum profesional yang berkomitmen pada keadilan substantif, integritas, dan pendampingan hukum yang berpihak pada masyarakat.</p>' +
+            '<p class="footer-about">Law Office Andi Jamaro Dulung &amp; Partners. Kantor hukum profesional yang berkomitmen pada keadilan substantif, integritas, dan pendampingan hukum yang berpihak pada masyarakat.</p>' +
             "</div>" +
             '<div class="footer-col"><h4>Navigasi</h4>' +
             LINKS.map(function (l) { return '<a href="' + relPrefix() + l.href + '">' + l.label + "</a>"; }).join("") +
@@ -75,7 +75,7 @@
             '<p>Senin &ndash; Jumat &middot; 10.00&ndash;16.00 WIB</p>' +
             "</div>" +
             "</div>" +
-            '<div class="footer-bottom">&copy; ' + new Date().getFullYear() + " AJD Law Firm &mdash; Andi Jamaro Dulung &amp; Associates. All Rights Reserved.</div>" +
+            '<div class="footer-bottom">&copy; ' + new Date().getFullYear() + " AJD Law Firm &mdash; Andi Jamaro Dulung &amp; Partners. All Rights Reserved.</div>" +
             "</div>"
         );
     }
