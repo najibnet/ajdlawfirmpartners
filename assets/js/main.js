@@ -47,7 +47,7 @@
             "</a>" +
             '<div class="nav-right">' +
             '<nav><ul class="nav-menu" id="navMenu">' + menu + "</ul></nav>" +
-            '<a data-wa class="btn-gold nav-cta-mobile-hide">' + WA_ICON + " Konsultasi Sekarang</a>" +
+            '<a data-wa class="btn-whatsapp nav-cta-mobile-hide">' + WA_ICON + " Konsultasi Sekarang</a>" +
             '<button class="hamburger" id="hamburger" aria-label="Buka menu">&#9776;</button>' +
             "</div></div></header>"
         );

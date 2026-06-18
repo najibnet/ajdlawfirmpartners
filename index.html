@@ -6,6 +6,10 @@
 <title>AJD Law Firm | Andi Jamaro Dulung &amp; Associates</title>
 <meta name="description" content="AJD Law Firm (Andi Jamaro Dulung & Associates) adalah kantor hukum profesional di Jakarta Pusat yang melayani litigasi, hukum pidana, perdata, korporasi, dan konsultasi hukum dengan integritas.">
 <link rel="icon" href="assets/ajd-logo.jpg">
+<!-- Fonts (Playfair Display for headings & Inter for content) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -15,24 +19,19 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <div>
+            <div class="hero-left">
                 <span class="hero-label">Kantor Hukum Profesional &middot; Jakarta Pusat</span>
                 <h1>Pendampingan Hukum yang <span>Berintegritas</span> &amp; Berkeadilan</h1>
                 <p class="hero-subtitle">Andi Jamaro Dulung &amp; Associates</p>
                 <p class="hero-desc">AJD Law Firm hadir sebagai mitra hukum tepercaya bagi individu, keluarga, dan perusahaan. Kami memberikan solusi hukum yang strategis, profesional, dan berpihak pada keadilan substantif.</p>
+                
                 <div class="hero-btns">
-                    <a data-wa class="btn-gold">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-                        Konsultasi Sekarang
-                    </a>
+                    <a href="profil.html" class="btn-gold">Profil</a>
                     <a href="tentang.html" class="btn-outline">Layanan Kami</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat"><strong>30+</strong><span>Tahun Pengalaman</span></div>
-                    <div class="hero-stat"><strong>500+</strong><span>Klien Terlayani</span></div>
-                    <div class="hero-stat"><strong>4</strong><span>Bidang Praktik</span></div>
-                </div>
-            </div>
+                </div> <!-- PENTING: Ini adalah penutup hero-btns -->
+                
+            </div> <!-- PENTING: Ini adalah penutup hero-left -->
+            
             <div class="hero-photo-wrap">
                 <div class="photo-frame">
                     <img class="hero-photo" src="assets/ajd-foto.jpg" alt="Dr. H. Andi Jamaro Dulung, M.Si, M.H — Pendiri AJD Law Firm">
@@ -42,6 +41,7 @@
         </div>
     </section>
 
+
     <!-- LAYANAN -->
     <section class="bg-alt">
         <div class="container">
@@ -50,23 +50,23 @@
                 <h2 class="section-title">Layanan Hukum Kami</h2>
                 <p class="section-desc">Solusi hukum menyeluruh yang ditangani secara profesional oleh tim advokat berpengalaman.</p>
             </div>
-            <div class="cards-grid">
-                <div class="card">
+            <div class="card-grid">
+                <div class="card-item">
                     <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6"><path d="M3 6l9-3 9 3M12 3v18M5 6v6M19 6v6M3 12h6M15 12h6M4 18h6M14 18h6"/></svg></div>
                     <h3>Litigasi &amp; Perdata</h3>
                     <p>Pendampingan sengketa perdata, wanprestasi, perbuatan melawan hukum, dan penyelesaian perkara di pengadilan secara menyeluruh.</p>
                 </div>
-                <div class="card">
+                <div class="card-item">
                     <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6"><path d="M12 3l7 4v5c0 4.5-3.1 8.7-7 10-3.9-1.3-7-5.5-7-10V7l7-4z"/></svg></div>
                     <h3>Hukum Pidana</h3>
                     <p>Pembelaan dan pendampingan hukum pada setiap tahap proses pidana, dari penyidikan hingga persidangan, dengan menjunjung asas praduga tak bersalah.</p>
                 </div>
-                <div class="card">
+                <div class="card-item">
                     <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/></svg></div>
                     <h3>Korporasi &amp; Bisnis</h3>
                     <p>Penyusunan kontrak, kepatuhan hukum, restrukturisasi, dan pendampingan perusahaan dalam transaksi serta perizinan usaha.</p>
                 </div>
-                <div class="card">
+                <div class="card-item">
                     <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                     <h3>Konsultasi Hukum</h3>
                     <p>Layanan konsultasi dan opini hukum untuk membantu Anda mengambil keputusan yang tepat dan terukur secara legal.</p>
@@ -82,16 +82,16 @@
                 <div class="section-kicker">Mengapa AJD Law Firm</div>
                 <h2 class="section-title">Komitmen Kami untuk Anda</h2>
             </div>
-            <div class="value-grid">
-                <div class="value-card">
+            <div class="card-grid cols-3">
+                <div class="card-item value-card">
                     <h3>Integritas</h3>
                     <p>Setiap perkara kami tangani dengan kejujuran, transparansi, dan standar etika profesi advokat yang tinggi.</p>
                 </div>
-                <div class="value-card">
+                <div class="card-item value-card">
                     <h3>Profesional</h3>
                     <p>Ditangani oleh advokat berpengalaman dengan rekam jejak panjang di dunia hukum, pemerintahan, dan akademik.</p>
                 </div>
-                <div class="value-card">
+                <div class="card-item value-card">
                     <h3>Berkeadilan</h3>
                     <p>Kami berpihak pada keadilan substantif dan berkomitmen memberikan akses hukum bagi seluruh lapisan masyarakat.</p>
                 </div>
@@ -104,7 +104,7 @@
         <div class="container">
             <h2>Butuh Bantuan Hukum?</h2>
             <p>Konsultasikan permasalahan hukum Anda bersama tim AJD Law Firm. Kami siap mendampingi dengan solusi terbaik.</p>
-            <a data-wa class="btn-gold">
+            <a data-wa class="btn-whatsapp">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                 Konsultasi Sekarang
             </a>
@@ -113,5 +113,14 @@
 
     <footer id="site-footer"></footer>
     <script src="assets/js/main.js"></script>
+
+    <!-- Floating Email Button -->
+    <a href="hubungi.html" class="email-floating" aria-label="Hubungi Kami">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>Hubungi Kami</span>
+    </a>
 </body>
 </html>
