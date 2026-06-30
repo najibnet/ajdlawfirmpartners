@@ -1,6 +1,6 @@
 # AJD Law Firm — Website
 
-Website statis (HTML/CSS/JS murni) untuk **AJD Law Firm — Andi Jamaro Dulung & Associates**.
+Website statis (HTML/CSS/JS murni) untuk **AJD Law Firm — Andi Jamaro Dulung & Partners**.
 Dirancang untuk di-_hosting_ di **GitHub Pages** tanpa proses build.
 
 ## Struktur Folder
