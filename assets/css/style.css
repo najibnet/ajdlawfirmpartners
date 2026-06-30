@@ -267,9 +267,9 @@ section { padding: 90px 0; position: relative; }
 .split-photo { position: sticky; top: 110px; }
 .split-frame { border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); }
 .split-frame img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
-.prose p { margin-bottom: 20px; color: var(--text-charcoal); font-size: 16px; line-height: 1.9; }
+.prose p { margin-bottom: 20px; color: var(--text-charcoal); font-size: 18px; line-height: 1.9; }
 .prose p strong { color: var(--text-dark); font-weight: 600; }
-.prose p:first-child { font-size: 18px; color: var(--text-dark); }
+/*.prose p:first-child { font-size: 18px; color: var(--text-dark); }
 .prose h3 { color: var(--text-dark); margin: 32px 0 14px; font-size: 24px; font-family: 'Playfair Display', Georgia, serif; }
 .prose ul { margin: 0 0 20px 20px; color: var(--text-charcoal); }
 .prose li { margin-bottom: 8px; }
