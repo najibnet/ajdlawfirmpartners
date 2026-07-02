@@ -1,0 +1,32 @@
+# Sveltia CMS Configuration for AJD Law Firm
+backend:
+  name: github
+  repo: najibnet/ajdlawfirmpartners
+  branch: main
+
+local_backend: true
+
+media_folder: "assets/articles"
+public_folder: "/assets/articles"
+
+collections:
+  - name: "articles"
+    label: "Artikel & Wawasan"
+    label_singular: "Artikel"
+    folder: "cms/articles/data"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "Judul", name: "title", widget: "string", required: true }
+      - { label: "ID URL (Slug)", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9-]+$", "Hanya huruf kecil, angka, dan strip (-)"], hint: "Contoh: sengketa-perdata-jakarta" }
+      - { label: "Tanggal Terbit", name: "date", widget: "datetime", type: "date", format: "YYYY-MM-DD", required: true }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Litigasi", "Korporasi", "Konsultasi", "Pidana", "Perdata"], required: true }
+      - { label: "Gambar Unggulan", name: "thumbnail", widget: "image", required: true }
+      - label: "Ringkasan Singkat"
+        name: "summary"
+        widget: "text"
+        required: true
+        hint: "Maksimal 2 kalimat pendek untuk ditampilkan di kartu daftar artikel."
+      - { label: "Isi Konten Artikel", name: "body", widget: "markdown", required: true }
