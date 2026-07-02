@@ -20,7 +20,7 @@
         { href: "index.html", label: "Beranda" },
         { href: "tentang.html", label: "Tentang Kami" },
         { href: "profil.html", label: "Profil" },
-        { href: "artikel.html", label: "Artikel" },
+        { href: "cms/artikel.html", label: "Artikel" },
         { href: "hubungi.html", label: "Hubungi Kami" }
     ];
 
@@ -80,9 +80,17 @@
         );
     }
 
-    // Pages inside /articles/ need "../" to reach root assets
+    // Pages inside /cms/articles/ need "../../" to reach root assets
+    // Pages inside /cms/ need "../" to reach root assets
+    // Root pages need nothing
     function relPrefix() {
-        return window.location.pathname.indexOf("/articles/") !== -1 ? "../" : "";
+        var path = window.location.pathname;
+        if (path.indexOf("/cms/articles/") !== -1) {
+            return "../../";
+        } else if (path.indexOf("/cms/") !== -1 || path.indexOf("/articles/") !== -1) {
+            return "../";
+        }
+        return "";
     }
 
     function init() {

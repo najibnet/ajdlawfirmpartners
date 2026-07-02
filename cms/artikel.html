@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel & Wawasan Hukum | AJD Law Firm</title>
+<meta name="description" content="Artikel, berita, dan wawasan hukum terbaru dari AJD Law Firm.">
+<link rel="icon" href="../assets/ajd-logo.jpg">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    width: 100%;
+    color: #fff;
+    grid-column: 1 / -1;
+  }
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #d4af37;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="crumb">Artikel</div>
+            <h1>Wawasan & Berita Hukum</h1>
+            <p>Kumpulan artikel, analisis, dan informasi hukum terkini dari AJD Law Firm.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="article-grid" id="article-grid">
+                <div id="loader" class="loader-container">
+                    <div class="spinner"></div>
+                    <p>Memuat artikel...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+    (function() {
+        const GRID = document.getElementById('article-grid');
+        const LOADER = document.getElementById('loader');
+        const OWNER = 'najibnet';
+        const REPO = 'ajdlawfirmpartners';
+        const DATA_PATH = 'cms/articles/data';
+
+        // Parse front matter from markdown
+        function parseFrontMatter(text, id) {
+            const lines = text.split('\n');
+            const data = { id: id };
+            let inFront = false;
+            let frontLines = [];
+
+            for (let line of lines) {
+                if (line.trim() === '---') {
+                    if (!inFront) { inFront = true; }
+                    else { break; }
+                } else if (inFront) {
+                    frontLines.push(line);
+                }
+            }
+
+            frontLines.forEach(line => {
+                const idx = line.indexOf(':');
+                if (idx !== -1) {
+                    let key = line.substring(0, idx).trim();
+                    let val = line.substring(idx + 1).trim();
+                    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                        val = val.slice(1, -1);
+                    }
+                    data[key] = val;
+                }
+            });
+
+            return data;
+        }
+
+        // Format date to Indonesian
+        function formatDate(str) {
+            if (!str) return '';
+            const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            const d = new Date(str);
+            if (isNaN(d.getTime())) return str;
+            return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        // Create article card HTML
+        function createCard(art) {
+            const imgPath = art.thumbnail ? '../../' + art.thumbnail.replace(/^\//, '') : '';
+            const linkUrl = '/cms/articles/baca.html?id=' + art.id;
+
+            return `
+                <article class="article-card">
+                    ${imgPath ? '<img class="article-thumb" src="' + imgPath + '" alt="">' : ''}
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <span class="article-cat">${art.category || 'Wawasan'}</span>
+                            <span>${formatDate(art.date)}</span>
+                        </div>
+                        <h3>${art.title || 'Tanpa Judul'}</h3>
+                        <p>${art.summary || ''}</p>
+                        <a class="article-link" href="${linkUrl}">Baca selengkapnya &rarr;</a>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Load articles
+        async function load() {
+            let articles = [];
+
+            // 1. Try LOCAL fetch first (for localhost testing)
+            const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+            if (isLocal) {
+                try {
+                    const dirRes = await fetch('./articles/data/');
+                    if (dirRes.ok) {
+                        const html = await dirRes.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const files = Array.from(doc.querySelectorAll('a'))
+                            .map(a => a.getAttribute('href'))
+                            .filter(h => h && h.endsWith('.md'))
+                            .map(h => h.split('/').pop());
+
+                        const results = await Promise.all(
+                            files.map(f =>
+                                fetch('./articles/data/' + f)
+                                    .then(r => r.ok ? r.text() : null)
+                                    .then(t => t ? parseFrontMatter(t, f.replace('.md', '')) : null)
+                            )
+                        );
+
+                        articles = results.filter(a => a !== null);
+                        console.log('Loaded', articles.length, 'articles from local files');
+                    }
+                } catch (e) {
+                    console.warn('Local fetch failed:', e);
+                }
+            }
+
+            // 2. Try GitHub API if no local articles found (for online/production)
+            if (articles.length === 0) {
+                try {
+                    const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + DATA_PATH);
+                    if (res.ok) {
+                        const files = await res.json();
+                        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+                        const results = await Promise.all(
+                            mdFiles.map(f =>
+                                fetch(f.download_url)
+                                    .then(r => r.ok ? r.text() : null)
+                                    .then(t => t ? parseFrontMatter(t, f.name.replace('.md', '')) : null)
+                            )
+                        );
+
+                        articles = results.filter(a => a !== null);
+                        console.log('Loaded', articles.length, 'articles from GitHub');
+                    }
+                } catch (e) {
+                    console.warn('GitHub API failed:', e);
+                }
+            }
+
+            // Sort by date
+            articles.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+            // Render
+            LOADER.style.display = 'none';
+            if (articles.length === 0) {
+                GRID.innerHTML = '<p style="color:#fff;text-align:center;grid-column:1/-1;">Belum ada artikel.</p>';
+                return;
+            }
+
+            GRID.innerHTML = articles.map(createCard).join('');
+        }
+
+        load();
+    })();
+    </script>
+</body>
+</html>

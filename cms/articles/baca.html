@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading... | AJD Law Firm</title>
+<link rel="icon" href="../../assets/ajd-logo.jpg">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    color: #fff;
+  }
+  .spinner {
+    border: 4px solid rgba(255,255,255,0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-left-color: #d4af37;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <section>
+        <div class="container">
+            <div id="loading" class="loader-container">
+                <div class="spinner"></div>
+                <p>Memuat artikel...</p>
+            </div>
+
+            <div id="content" class="article-detail" style="display:none;">
+                <a id="back-link" class="back-link" href="/cms/artikel.html">&larr; Kembali</a>
+                <div class="article-meta" style="margin-top:14px">
+                    <span id="cat" class="article-cat"></span>
+                    <span id="date"></span>
+                </div>
+                <h1 id="title" style="font-size:clamp(1.8rem,4vw,2.6rem);margin-top:10px;color:#fff"></h1>
+                <img id="img" class="article-hero-img" src="" alt="">
+                <div id="body" class="prose"></div>
+            </div>
+
+            <div id="error" class="loader-container" style="display:none;">
+                <p style="color:#ff6b6b;font-size:1.2rem;font-weight:bold;">Artikel tidak ditemukan</p>
+                <a class="back-link" href="/cms/artikel.html" style="margin-top:20px;">&larr; Kembali</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../../assets/js/main.js"></script>
+
+    <script>
+    (function() {
+        const LOADING = document.getElementById('loading');
+        const CONTENT = document.getElementById('content');
+        const ERROR = document.getElementById('error');
+        const TITLE = document.getElementById('title');
+        const CAT = document.getElementById('cat');
+        const DATE = document.getElementById('date');
+        const IMG = document.getElementById('img');
+        const BODY = document.getElementById('body');
+
+        const OWNER = 'najibnet';
+        const REPO = 'ajdlawfirmpartners';
+        const DATA_PATH = 'cms/articles/data';
+
+        // Get article ID from URL
+        const params = new URLSearchParams(location.search);
+        const id = params.get('id');
+
+        if (!id) {
+            showError();
+            return;
+        }
+
+        document.title = 'Loading... | AJD Law Firm';
+
+        // Parse front matter
+        function parseFront(text) {
+            const lines = text.split('\n');
+            const data = { body: '' };
+            let inFront = false;
+            let frontLines = [];
+            let bodyLines = [];
+
+            for (let line of lines) {
+                if (line.trim() === '---') {
+                    if (!inFront) { inFront = true; }
+                    else { inFront = false; }
+                } else if (inFront) {
+                    frontLines.push(line);
+                } else {
+                    bodyLines.push(line);
+                }
+            }
+
+            frontLines.forEach(line => {
+                const idx = line.indexOf(':');
+                if (idx !== -1) {
+                    let key = line.substring(0, idx).trim();
+                    let val = line.substring(idx + 1).trim();
+                    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                        val = val.slice(1, -1);
+                    }
+                    data[key] = val;
+                }
+            });
+
+            data.body = bodyLines.join('\n').trim();
+            return data;
+        }
+
+        // Format date
+        function formatDate(str) {
+            if (!str) return '';
+            const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            const d = new Date(str);
+            if (isNaN(d.getTime())) return str;
+            return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        function showError() {
+            LOADING.style.display = 'none';
+            ERROR.style.display = 'flex';
+        }
+
+        // Load article
+        async function load() {
+            let text = null;
+
+            // 1. Try local first (localhost)
+            const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+            if (isLocal) {
+                try {
+                    const res = await fetch('./data/' + id + '.md');
+                    if (res.ok) {
+                        text = await res.text();
+                        console.log('Loaded from local');
+                    }
+                } catch (e) {
+                    console.warn('Local fetch failed:', e);
+                }
+            }
+
+            // 2. Try GitHub API
+            if (!text) {
+                try {
+                    const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + DATA_PATH + '/' + id + '.md');
+                    if (res.ok) {
+                        const data = await res.json();
+                        text = atob(data.content);
+                        console.log('Loaded from GitHub');
+                    }
+                } catch (e) {
+                    console.warn('GitHub fetch failed:', e);
+                }
+            }
+
+            if (!text) {
+                showError();
+                return;
+            }
+
+            const art = parseFront(text);
+
+            document.title = (art.title || 'Artikel') + ' | AJD Law Firm';
+            TITLE.textContent = art.title || 'Tanpa Judul';
+            CAT.textContent = art.category || 'Wawasan';
+            DATE.textContent = formatDate(art.date);
+
+            if (art.thumbnail) {
+                IMG.src = '../../' + art.thumbnail.replace(/^\//, '');
+                IMG.style.display = 'block';
+            }
+
+            BODY.innerHTML = marked.parse(art.body || '');
+
+            LOADING.style.display = 'none';
+            CONTENT.style.display = 'block';
+        }
+
+        load();
+    })();
+    </script>
+</body>
+</html>
